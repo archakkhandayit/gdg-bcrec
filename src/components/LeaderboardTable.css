@@ -1,0 +1,177 @@
+/* components/LeaderboardTable.css */
+
+.leaderboard-wrapper {
+  max-height: 400px; /* Max height for vertical scroll */
+  overflow: auto; /* Enable both vertical and horizontal scroll */
+  position: relative; /* Needed for sticky positioning */
+  border: 1px solid var(--border-color); /* Optional: a border around the scrollable area */
+  border-radius: 8px; /* Match card rounding */
+  background-color: var(--white); /* Ensure background for sticky header */
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 1000px; /* Increased min-width for more columns */
+}
+.badge-title {
+  cursor: pointer;
+}
+thead th {
+  background-color: var(--white); /* Explicit background for sticky header */
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-weight: 500; /* Medium weight */
+  color: #5f6368; /* Google gray */
+  font-size: 0.9rem; /* Smaller font for headers */
+  border-bottom: 1px solid var(--border-color);
+  position: sticky; /* Make the header sticky */
+  top: 0; /* Stick to the top of its scrolling container */
+  z-index: 10; /* Ensure it stays above content */
+  white-space: nowrap; /* Prevent header text from wrapping */
+}
+
+tbody td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-size: 0.95rem; /* Slightly larger for content */
+  white-space: nowrap; /* Prevent text overflow within a cell naturally */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Show ellipsis for overflowing text */
+  max-width: 0; /* Important for text-overflow: ellipsis to work consistently */
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Alternating row colors */
+tbody tr.even-row {
+  background-color: var(--white);
+}
+
+tbody tr.odd-row {
+  background-color: var(--light-gray);
+}
+
+/* Hover effect */
+tbody tr:hover {
+  background-color: var(--hover-gray);
+  transition: background-color 0.2s ease;
+}
+
+.rank-cell {
+  font-weight: bold;
+  width: 80px;
+}
+
+.name-cell {
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px; /* Ensure fixed width */
+}
+
+.name-cell .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--text-color);
+  flex-shrink: 0;
+  user-select: none; /* Prevent text selection on initials */
+}
+
+.badge-progress-cell {
+  min-width: 150px;
+  width: 150px;
+  max-width: 150px;
+}
+
+.progress-bar-wrapper {
+  width: 100%;
+  height: 6px;
+  background-color: var(--border-color);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--primary-blue);
+  border-radius: 3px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* For all module columns (starting from the 4th child) */
+/* This will apply to 'Cloud Fundamentals', 'BigQuery Basics', 'APIs & AI Tools', etc. */
+.leaderboard-table th:nth-child(n+4),
+.leaderboard-table td:nth-child(n+4) {
+  width: 160px; /* Slightly reduced width for more modules */
+  min-width: 160px;
+  max-width: 160px; /* Ensure fixed width for horizontal scroll */
+  text-align: center; /* Center icons */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Ensure icons are correctly sized */
+.leaderboard-table td svg {
+    font-size: 1.25rem !important; /* Force icon size */
+    vertical-align: middle; /* Align icons nicely */
+}
+
+/* Loader Styles */
+.loader-container, .error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px; /* Ensure loader/error takes up some space */
+  padding: 2rem;
+  font-size: 1.1rem;
+  color: #5f6368;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: var(--primary-blue);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error Styles */
+.error-container p {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  color: #EA4335; /* Google Red */
+}
+
+.error-container .refresh-button {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+  font-weight: 500;
+}
+
+.error-container .refresh-button:hover {
+  background-color: #357ae8; /* Darker blue */
+}
