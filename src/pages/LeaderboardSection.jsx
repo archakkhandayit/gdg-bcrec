@@ -4,6 +4,8 @@ import "./LeaderboardSection.css"; // Create this CSS file
 import { Search, ArrowDropDown, FileDownload } from "@mui/icons-material"; // Example icons
 import LeaderboardTable from "../components/LeaderboardTable";
 
+// import useParticipants from '../hooks/useParticipants'
+
 const allBadges = [
   "The Basics of Google Cloud Compute",
   "Get Started with Cloud Storage",
@@ -28,6 +30,12 @@ const allBadges = [
 ];
 
 const LeaderboardSection = () => {
+
+// const data = useParticipants();
+// console.dir(data);
+// console.log("Fetched data:", data.participants);
+
+
   const [searchQuery, setSearchQuery] = useState("");
   const [currentTableData, setCurrentTableData] = useState([]);
 

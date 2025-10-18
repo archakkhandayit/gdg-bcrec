@@ -77,7 +77,7 @@ const LeaderboardTable = ({ searchQuery,onDataChange }) => {
               .join("")
               .toUpperCase()
               .substring(0, 2), // Generate initials
-            // avatarColor: `#${Math.floor(Math.random()*16777215).toString(16)}`, // Random color for demo
+            // avatarColor: #${Math.floor(Math.random()*16777215).toString(16)}, // Random color for demo
             badgesCompleted: badgesCompletionStatus,
             completedCount: badgesCompletionStatus.filter(Boolean).length, // Count true values
             maxBadges: allBadges.length, // Total badges possible
@@ -135,7 +135,7 @@ const LeaderboardTable = ({ searchQuery,onDataChange }) => {
             setLoading(true);
             setError(null);
             // Re-run the effect by changing a state it depends on, or manually re-fetch
-            // For simplicity, we'll just toggle a dummy state or make `useEffect` re-run
+            // For simplicity, we'll just toggle a dummy state or make useEffect re-run
             // A better way is to wrap the fetch logic in a function and call it here.
             window.location.reload(); // Simple refresh for demo
           }}
