@@ -7,7 +7,7 @@ const CompletionCard = ({ percentage, loading, error }) => {
   const [tierMax, setTierMax] = useState(0);
 
   useEffect(() => {
-    if (loading || error) return; // Skip animation if not ready
+    if (loading || error) return;
 
     let tierInfo = { name: "Tier 3", emoji: "🥉", relativeProgress: 0 };
 
@@ -58,7 +58,6 @@ const CompletionCard = ({ percentage, loading, error }) => {
 
   const offset = circleLength - (circleLength * progress) / 100;
 
-  // 🌀 Loading state
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100 animate-pulse">
@@ -69,7 +68,6 @@ const CompletionCard = ({ percentage, loading, error }) => {
     );
   }
 
-  // ❌ Error state
   if (error) {
     return (
       <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100">
@@ -79,7 +77,6 @@ const CompletionCard = ({ percentage, loading, error }) => {
     );
   }
 
-  // ✅ Normal state
   return (
     <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100 transition-all duration-300 hover:shadow-md">
       <p className="text-gray-700 text-sm font-medium">Completion %</p>

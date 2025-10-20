@@ -34,13 +34,11 @@ const LabCompletionChart = ({ perLabStats, loading, error }) => {
     );
   }
 
-  // Convert Firestore map to array for Recharts
   const data = Object.entries(perLabStats).map(([labName, completions]) => ({
     name: labName,
     Count: completions || 0,
   }));
 
-  // Optional: sort descending
   data.sort((a, b) => b.completions - a.completions);
 
   return (
@@ -76,41 +74,6 @@ const LabCompletionChart = ({ perLabStats, loading, error }) => {
         </ResponsiveContainer>
       </div>
     </div>
-//     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6">
-//   <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg p-6">
-//     <h2 className="text-2xl font-semibold mb-4 text-gray-800 text-center">
-//       Google Cloud Labs Progress
-//     </h2>
-
-//     <table className="w-full border border-gray-300 rounded-lg">
-//       <thead className="bg-gray-100">
-//         <tr>
-//           <th className="text-left py-2 px-3 border-b">#</th>
-//           <th className="text-left py-2 px-3 border-b">Lab Name</th>
-//           <th className="text-left py-2 px-3 border-b">Completion</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {labs.map((lab, index) => (
-//           <tr
-//             key={index}
-//             className="hover:bg-gray-50 transition-colors duration-200"
-//           >
-//             <td className="py-2 px-3 border-b">{index + 1}</td>
-//             <td className="py-2 px-3 border-b">{lab.name}</td>
-//             <td className="py-2 px-3 border-b">
-//               {lab.completed ? (
-//                 <span className="text-green-600 font-medium">Completed ✅</span>
-//               ) : (
-//                 <span className="text-red-600 font-medium">Pending ❌</span>
-//               )}
-//             </td>
-//           </tr>
-//         ))}
-//       </tbody>
-//     </table>
-//   </div>
-// </div>
 
   );
 };

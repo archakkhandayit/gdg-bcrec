@@ -71,7 +71,6 @@
 }
 
 .lead-card {
-  border: 2px solid var(--primary-blue);
   width: 320px;
   background: linear-gradient(145deg, #f8faff, #ffffff);
   transition: all 0.3s ease;

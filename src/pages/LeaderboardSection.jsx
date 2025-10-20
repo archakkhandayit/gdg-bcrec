@@ -31,53 +31,7 @@ const LeaderboardSection = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentTableData, setCurrentTableData] = useState([]);
-  // const data = useParticipants();
-// console.dir(data);
-// console.log("Fetched data:", data.participants);
-// console.log("current table data")
-// console.dir(currentTableData);
-
-
-  // const handleExportCSV = () => {
-  //   if (!currentTableData || currentTableData.length === 0) {
-  //     alert("No leaderboard data to export.");
-  //     return;
-  //   }
-  //   // CSV header: rank, name, badge progress, all badges
-  //   const headers = [
-  //     "Rank",
-  //     "Name",
-  //     "Completed Badges",
-  //     "Max Badges",
-  //     ...allBadges,
-  //   ];
-
-  //   const csvRows = [
-  //     headers.join(","), // header row
-  //     ...currentTableData.map((user) => {
-  //       const badgeStatuses = user.badgesCompleted.map((completed) =>
-  //         completed ? "YES" : "NO"
-  //       );
-  //       return [
-  //         user.rank,
-  //         user.name,
-  //         user.completedCount,
-  //         user.maxBadges,
-  //         ...badgeStatuses,
-  //       ].join(",");
-  //     }),
-  //   ];
-
-  //   const csvString = csvRows.join("\n");
-  //   const blob = new Blob([csvString], { type: "text/csv" });
-  //   const url = window.URL.createObjectURL(blob);
-  //   const a = document.createElement("a");
-  //   a.href = url;
-  //   a.download = "leaderboard_full.csv";
-  //   a.click();
-  //   window.URL.revokeObjectURL(url);
-  // };
-
+  
   const handleExportCSV = () => {
     if (!currentTableData || currentTableData.length === 0) {
       alert("No leaderboard data to export.");
@@ -94,7 +48,6 @@ const LeaderboardSection = () => {
     ];
 
     const rows = currentTableData.map((user) => {
-      // user.badges is [{title, completed}, ...]
       const badgeStatuses = allBadges.map((title) => {
         const found = user.badges.find((b) => b.title === title);
         return found?.completed ? "YES" : "NO";
@@ -108,7 +61,6 @@ const LeaderboardSection = () => {
       ];
     });
 
-    // escape values and join
     const csvLines = [headers, ...rows].map((row) =>
       row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")
     );
@@ -154,14 +106,9 @@ const LeaderboardSection = () => {
           />
         </div>
         <div className="flex-row gap-2">
-          {/* <button className="filter-button flex-row items-center">
-            All Modules <ArrowDropDown />
-          </button> */}
-          {/* <button className="filter-button flex-row items-center">
-            Filter <ArrowDropDown />
-          </button> */}
           <button
             className="export-button flex-row items-center"
+            disabled={!currentTableData || currentTableData.length === 0}
             onClick={handleExportCSV}
           >
             Export CSV <FileDownload />

@@ -94,3 +94,26 @@
   background-color: #357ae8; /* Darker blue on hover */
   border-color: #357ae8;
 }
+
+.export-button {
+  background-color: #4caf50; /* normal green */
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.export-button:hover:not(:disabled) {
+  background-color: #45a049; /* darker green on hover */
+}
+
+.export-button:disabled {
+  background-color: #a5d6a7; /* lighter green to indicate disabled */
+  cursor: not-allowed;
+  opacity: 0.6;
+}

@@ -1,18 +1,17 @@
 // src/hooks/useParticipants.js
 import { useEffect, useState } from "react";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
-import { db } from "../firebase"; // adjust if your firebase config is in another folder
+import { db } from "../firebase.js"; 
 
 export const useParticipants = () => {
   const [participants, setParticipants] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(true);
   const [lastUpdate, setLastUpdate] = useState(null);
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
-    // 🟢 Firestore query ordered by rank (ascending)
-    const q = query(collection(db, "board2"), orderBy("rank", "asc"));
+    const q = query(collection(db, import.meta.env.VITE_DB_COLLECTION1), orderBy("rank", "asc"));
 
     const unsubscribe = onSnapshot(
       q,
@@ -26,10 +25,10 @@ export const useParticipants = () => {
         setLastUpdate(new Date().toLocaleString());
         setLoading(false);
         setIsLive(true);
+        setError(false);
       },
       (err) => {
-        console.error("Firestore error:", err);
-        setError(err.message);
+        setError(true);
         setLoading(false);
         setIsLive(false);
       }

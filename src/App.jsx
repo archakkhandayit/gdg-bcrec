@@ -18,7 +18,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/leaderboard" element={<LeaderboardSection />} />
             <Route path="/about" element={<AboutPage />} />
-            {/* Add more routes here if needed */}
           </Routes>
         </main>
       </div>
