@@ -1,9 +1,9 @@
+// src/hooks/useParticipants.js
 import { useEffect, useState } from "react";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
-import { db } from "../firebase.js"; // adjust if your firebase config is in another folder
+import { db } from "../firebase"; // adjust if your firebase config is in another folder
 
-const useParticipants = () => {
-
+export const useParticipants = () => {
   const [participants, setParticipants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ const useParticipants = () => {
 
   useEffect(() => {
     // 🟢 Firestore query ordered by rank (ascending)
-    const q = query(collection(db, "board"), orderBy("rank", "asc"));
+    const q = query(collection(db, "board2"), orderBy("rank", "asc"));
 
     const unsubscribe = onSnapshot(
       q,
@@ -38,7 +38,5 @@ const useParticipants = () => {
     return () => unsubscribe();
   }, []);
 
-  return { participants, loading, error, lastUpdate, isLive };
+  return {participants,setParticipants, loading, setLoading, error, setError, lastUpdate, isLive  };
 };
-
-export default useParticipants;

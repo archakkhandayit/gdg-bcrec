@@ -1,34 +1,85 @@
 import React, { useEffect, useState } from "react";
 
-const CompletionCard = ({ percentage, tier }) => {
+const CompletionCard = ({ percentage, loading, error }) => {
   const [progress, setProgress] = useState(0);
+  const [tier, setTier] = useState({ name: "Tier 3", emoji: "🥉" });
+  const circleLength = 226;
+  const [tierMax, setTierMax] = useState(0);
 
   useEffect(() => {
-    let start = 0;
-    const duration = 1500; // total animation time (ms)
+    if (loading || error) return; // Skip animation if not ready
+
+    let tierInfo = { name: "Tier 3", emoji: "🥉", relativeProgress: 0 };
+
+    if (percentage >= 100) {
+      tierInfo = { name: "Tier 1", emoji: "🥇", relativeProgress: 100 };
+      setTierMax(100);
+    } else if (percentage >= 70) {
+      setTierMax(70);
+      tierInfo = {
+        name: "Tier 2",
+        emoji: "🥈",
+        relativeProgress: ((percentage - 70) / 30) * 100,
+      };
+    } else if (percentage >= 50) {
+      setTierMax(50);
+      tierInfo = {
+        name: "Tier 3",
+        emoji: "🥉",
+        relativeProgress: ((percentage - 50) / 20) * 100,
+      };
+    } else {
+      setTierMax(50);
+      tierInfo = {
+        name: "Tier 3",
+        emoji: "🥉",
+        relativeProgress: (percentage / 50) * 100,
+      };
+    }
+
+    setTier({ name: tierInfo.name, emoji: tierInfo.emoji });
+
+    // Animate progress
+    const duration = 1500;
     const startTime = performance.now();
 
     const animate = (currentTime) => {
       const elapsed = currentTime - startTime;
-      const progressValue = Math.min(elapsed / duration, 1); // ease progress (0 to 1)
-      const eased = 1 - Math.pow(1 - progressValue, 3); // easeOutCubic for smooth motion
-      const current = Math.round(eased * percentage);
+      const progressValue = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progressValue, 3);
+      const current = Math.round(eased * tierInfo.relativeProgress);
       setProgress(current);
-
-      if (elapsed < duration) {
-        requestAnimationFrame(animate);
-      }
+      if (elapsed < duration) requestAnimationFrame(animate);
     };
 
-    // delay start slightly to prevent first-frame glitch
     const timeout = setTimeout(() => requestAnimationFrame(animate), 200);
-
     return () => clearTimeout(timeout);
-  }, [percentage]);
+  }, [percentage, loading, error]);
 
-  const circleLength = 226;
   const offset = circleLength - (circleLength * progress) / 100;
 
+  // 🌀 Loading state
+  if (loading) {
+    return (
+      <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100 animate-pulse">
+        <div className="w-16 h-16 rounded-full bg-gray-200 mb-3"></div>
+        <div className="h-4 w-24 bg-gray-200 rounded mb-2"></div>
+        <div className="h-3 w-16 bg-gray-200 rounded"></div>
+      </div>
+    );
+  }
+
+  // ❌ Error state
+  if (error) {
+    return (
+      <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100">
+        <p className="text-red-500 font-medium text-sm">⚠️ Failed to load data</p>
+        <p className="text-gray-500 text-xs mt-1">{error.message || "Something went wrong"}</p>
+      </div>
+    );
+  }
+
+  // ✅ Normal state
   return (
     <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100 transition-all duration-300 hover:shadow-md">
       <p className="text-gray-700 text-sm font-medium">Completion %</p>
@@ -53,9 +104,7 @@ const CompletionCard = ({ percentage, tier }) => {
             fill="none"
             strokeDasharray={circleLength}
             strokeDashoffset={offset}
-            style={{
-              transition: "stroke-dashoffset 0.2s ease-out",
-            }}
+            style={{ transition: "stroke-dashoffset 0.2s ease-out" }}
           />
         </svg>
         <span className="absolute inset-0 flex items-center justify-center text-2xl font-semibold text-blue-500">
@@ -64,10 +113,10 @@ const CompletionCard = ({ percentage, tier }) => {
       </div>
 
       <div className="flex items-center justify-center gap-1 mt-2 text-gray-600 text-sm">
-        <span className="text-yellow-500">🥇</span>
-        <span>{tier}</span>
+        <span>{tier.emoji}</span>
+        <span>{tier.name}</span>
         <span className="ml-1 bg-gray-100 rounded-md px-2 py-[1px] text-xs font-medium">
-          {progress}/100
+          {percentage}/{tierMax}
         </span>
       </div>
     </div>

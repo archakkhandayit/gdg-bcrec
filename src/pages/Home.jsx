@@ -3,10 +3,14 @@ import TotalParticipantsCard from "../components/TotalParticipantsCard";
 import CompletionCard from "../components/CompletionCard";
 import AverageProgressCard from "../components/AverageProgressCard";
 import ComingSoonPNG from "../assets/Coming-Soon.png";
+import LabCompletionChart from "../components/LabCompletionChart";
 
-// import CommingSoonPNG from '../assets/Comming-Soon.png'
+import { useStatsData } from "../hooks/useStatsData";
 
 const Home = () => {
+  const { totalFullCompletions, perLabStats, loading, error } = useStatsData();
+
+  console.log(perLabStats);
   return (
     <div className="leaderboard-card shadow-soft rounded-lg">
       <div className="leaderboard-header">
@@ -21,7 +25,11 @@ const Home = () => {
       </div>
       <div className="bg-gray-50 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-5xl mx-auto p-4 rounded-xl">
         <TotalParticipantsCard value={197} />
-        <CompletionCard percentage={77} tier="Tier 1" />
+        <CompletionCard
+          percentage={totalFullCompletions}
+          loading={loading}
+          error={error}
+        />
         <AverageProgressCard value={17} />
       </div>
 
@@ -31,8 +39,7 @@ const Home = () => {
           🎁 Exciting Swags for Completing Milestones!
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto font-sans"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto font-sans">
           {/* Tier 1 */}
           <div className="swag-card bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col items-center">
             <img
@@ -73,6 +80,16 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      {/* New chart section */}
+      <div className="mt-8 px-4">
+        <LabCompletionChart
+          perLabStats={perLabStats}
+          loading={loading}
+          error={error}
+        />
+      </div>
+
     </div>
   );
 };

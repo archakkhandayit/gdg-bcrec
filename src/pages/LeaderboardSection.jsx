@@ -4,8 +4,6 @@ import "./LeaderboardSection.css"; // Create this CSS file
 import { Search, ArrowDropDown, FileDownload } from "@mui/icons-material"; // Example icons
 import LeaderboardTable from "../components/LeaderboardTable";
 
-// import useParticipants from '../hooks/useParticipants'
-
 const allBadges = [
   "The Basics of Google Cloud Compute",
   "Get Started with Cloud Storage",
@@ -31,58 +29,107 @@ const allBadges = [
 
 const LeaderboardSection = () => {
 
-// const data = useParticipants();
-// console.dir(data);
-// console.log("Fetched data:", data.participants);
-
-
   const [searchQuery, setSearchQuery] = useState("");
   const [currentTableData, setCurrentTableData] = useState([]);
+  // const data = useParticipants();
+// console.dir(data);
+// console.log("Fetched data:", data.participants);
+// console.log("current table data")
+// console.dir(currentTableData);
+
+
+  // const handleExportCSV = () => {
+  //   if (!currentTableData || currentTableData.length === 0) {
+  //     alert("No leaderboard data to export.");
+  //     return;
+  //   }
+  //   // CSV header: rank, name, badge progress, all badges
+  //   const headers = [
+  //     "Rank",
+  //     "Name",
+  //     "Completed Badges",
+  //     "Max Badges",
+  //     ...allBadges,
+  //   ];
+
+  //   const csvRows = [
+  //     headers.join(","), // header row
+  //     ...currentTableData.map((user) => {
+  //       const badgeStatuses = user.badgesCompleted.map((completed) =>
+  //         completed ? "YES" : "NO"
+  //       );
+  //       return [
+  //         user.rank,
+  //         user.name,
+  //         user.completedCount,
+  //         user.maxBadges,
+  //         ...badgeStatuses,
+  //       ].join(",");
+  //     }),
+  //   ];
+
+  //   const csvString = csvRows.join("\n");
+  //   const blob = new Blob([csvString], { type: "text/csv" });
+  //   const url = window.URL.createObjectURL(blob);
+  //   const a = document.createElement("a");
+  //   a.href = url;
+  //   a.download = "leaderboard_full.csv";
+  //   a.click();
+  //   window.URL.revokeObjectURL(url);
+  // };
 
   const handleExportCSV = () => {
-    if (!currentTableData.length) return;
+    if (!currentTableData || currentTableData.length === 0) {
+      alert("No leaderboard data to export.");
+      return;
+    }
 
-    // CSV header: rank, name, badge progress, all badges
     const headers = [
       "Rank",
       "Name",
+      "profile_url",
       "Completed Badges",
       "Max Badges",
       ...allBadges,
     ];
 
-    const csvRows = [
-      headers.join(","), // header row
-      ...currentTableData.map((user) => {
-        const badgeStatuses = user.badgesCompleted.map((completed) =>
-          completed ? "YES" : "NO"
-        );
-        return [
-          user.rank,
-          user.name,
-          user.completedCount,
-          user.maxBadges,
-          ...badgeStatuses,
-        ].join(",");
-      }),
-    ];
+    const rows = currentTableData.map((user) => {
+      // user.badges is [{title, completed}, ...]
+      const badgeStatuses = allBadges.map((title) => {
+        const found = user.badges.find((b) => b.title === title);
+        return found?.completed ? "YES" : "NO";
+      });
+      return [
+        user.rank ?? "",
+        user.name ?? "",
+        user.profile_url ?? "",
+        user.completedCount ?? badgeStatuses.filter((s) => s === "YES").length,
+        ...badgeStatuses,
+      ];
+    });
 
-    const csvString = csvRows.join("\n");
-    const blob = new Blob([csvString], { type: "text/csv" });
+    // escape values and join
+    const csvLines = [headers, ...rows].map((row) =>
+      row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")
+    );
+    const csvString = csvLines.join("\r\n");
+
+    const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
     a.download = "leaderboard_full.csv";
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
   };
-
   return (
     <div className="leaderboard-card shadow-soft rounded-lg">
       <div className="leaderboard-header">
         <h1 className="leaderboard-title">Google Cloud Study Jams 2025</h1>
         <p className="leaderboard-subtitle">
-          Track your progress in the Skill Challenge
+          Track your progress in the Google Cloud Study Jams
         </p>
         <div className="accent-lines">
           <span style={{ backgroundColor: "#4285F4" }}></span>
