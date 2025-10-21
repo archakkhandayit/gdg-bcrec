@@ -43,7 +43,6 @@ const LeaderboardSection = () => {
       "Name",
       "profile_url",
       "Completed Badges",
-      "Max Badges",
       ...allBadges,
     ];
 
@@ -101,7 +100,6 @@ const LeaderboardSection = () => {
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
-              console.log(searchQuery);
             }}
           />
         </div>

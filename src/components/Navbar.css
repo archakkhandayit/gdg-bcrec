@@ -41,6 +41,7 @@
 }
 
 .navbar-link {
+  font-family: var(--font-secondary);
   font-weight: 500;
   color: var(--text-color);
   cursor: pointer;

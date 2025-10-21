@@ -60,7 +60,7 @@ const CompletionCard = ({ percentage, loading, error }) => {
 
   if (loading) {
     return (
-      <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100 animate-pulse">
+      <div className="flex flex-col justify-center items-center w-full modern-card p-6 text-center animate-pulse">
         <div className="w-16 h-16 rounded-full bg-gray-200 mb-3"></div>
         <div className="h-4 w-24 bg-gray-200 rounded mb-2"></div>
         <div className="h-3 w-16 bg-gray-200 rounded"></div>
@@ -70,7 +70,7 @@ const CompletionCard = ({ percentage, loading, error }) => {
 
   if (error) {
     return (
-      <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100">
+      <div className="flex flex-col justify-center items-center w-full modern-card p-6 text-center">
         <p className="text-red-500 font-medium text-sm">⚠️ Failed to load data</p>
         <p className="text-gray-500 text-xs mt-1">{error.message || "Something went wrong"}</p>
       </div>
@@ -78,7 +78,7 @@ const CompletionCard = ({ percentage, loading, error }) => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100 transition-all duration-300 hover:shadow-md">
+    <div className="flex flex-col justify-center items-center w-full modern-card p-6 text-center floating-element">
       <p className="text-gray-700 text-sm font-medium">Completion %</p>
 
       <div className="relative mt-3">
@@ -95,7 +95,7 @@ const CompletionCard = ({ percentage, loading, error }) => {
             cx="40"
             cy="40"
             r="36"
-            stroke="#3B82F6"
+            stroke="url(#gradient)"
             strokeWidth="8"
             strokeLinecap="round"
             fill="none"
@@ -103,8 +103,14 @@ const CompletionCard = ({ percentage, loading, error }) => {
             strokeDashoffset={offset}
             style={{ transition: "stroke-dashoffset 0.2s ease-out" }}
           />
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#667eea" />
+              <stop offset="100%" stopColor="#764ba2" />
+            </linearGradient>
+          </defs>
         </svg>
-        <span className="absolute inset-0 flex items-center justify-center text-2xl font-semibold text-blue-500">
+        <span className="absolute inset-0 flex items-center justify-center text-2xl font-semibold gradient-text">
           {progress}
         </span>
       </div>

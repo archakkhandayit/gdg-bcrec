@@ -39,7 +39,7 @@ const AverageProgressCard = ({ TotalParticipants, perLabStats, loading, error })
 
   if (loading) {
     return (
-      <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100 animate-pulse">
+      <div className="flex flex-col justify-center items-center w-full modern-card p-6 text-center animate-pulse">
         <div className="w-16 h-16 rounded-full bg-gray-200 mb-3"></div>
         <div className="h-4 w-24 bg-gray-200 rounded mb-2"></div>
         <div className="h-3 w-16 bg-gray-200 rounded"></div>
@@ -49,7 +49,7 @@ const AverageProgressCard = ({ TotalParticipants, perLabStats, loading, error })
 
   if (error) {
     return (
-      <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100">
+      <div className="flex flex-col justify-center items-center w-full modern-card p-6 text-center">
         <p className="text-red-500 font-medium text-sm">
           ⚠️ Failed to load data
         </p>
@@ -61,9 +61,9 @@ const AverageProgressCard = ({ TotalParticipants, perLabStats, loading, error })
   }
 
   return (
-    <div className="flex flex-col justify-center items-center w-full bg-white shadow-sm rounded-2xl p-6 text-center border border-gray-100 transition-all duration-300 hover:shadow-md">
+    <div className="flex flex-col justify-center items-center w-full modern-card p-6 text-center floating-element">
       <p className="text-gray-800 text-sm font-medium">Average Progress</p>
-      <h2 className="text-4xl font-semibold text-blue-500 mt-2">{lessThan===true?"":"<"} {count}</h2>
+      <h2 className="text-4xl font-semibold gradient-text mt-2">{lessThan===true?"":"<"} {count}</h2>
       <p className="text-gray-500 text-sm mt-1">badges / person</p>
     </div>
   );
