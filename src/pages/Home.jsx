@@ -9,18 +9,15 @@ import { useStatsData } from "../hooks/useStatsData.js";
 
 const Home = () => {
   const { totalFullCompletions, perLabStats, loading, error } = useStatsData();
-
-  console.dir(perLabStats);
-  console.log("error", error);
   const TotalParticipants = 190;
   return (
-    <div className="leaderboard-card shadow-soft rounded-lg">
+    <div className="leaderboard-card modern-card shadow-soft rounded-lg">
       <div className="leaderboard-header">
         <h1 className="leaderboard-title">Google Cloud Study Jams 2025</h1>
         <p className="leaderboard-subtitle font-bold">Study Jams Statistics</p>
 
         <a
-          href="https://c.gle/AF5yWjAcrU2QEu8kndWfRs20L6G1js1LCPTTo2mVM1oGN3rm3Ks11QI_Do9DAwZiUUIiuARW1BjEDYH14K7JLFCmhCvz1-QN9OkfP_pL9yykQlXi_y0"
+          href="https://docs.google.com/spreadsheets/d/1PVmcsHCtKLmNOjBN8qG-H3eaZ7y3El5bbJzS4hLgLBM/edit?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="-mt-3 inline-flex items-center gap-2 text-blue-600 font-medium text-sm px-3 py-1.5 border border-blue-500 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
@@ -56,7 +53,7 @@ const Home = () => {
       </div>
 
       {/* Swags Section */}
-      <div className="swags-section mt-8 px-4 py-6 bg-white rounded-xl shadow-sm">
+      <div className="swags-section mt-8 px-4 py-6 modern-card rounded-xl shadow-sm">
         <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">
           🎁 Exciting Swags for Completing Milestones!
         </h2>
@@ -86,7 +83,7 @@ const Home = () => {
           // Normal Content
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto font-sans">
             {/* Tier 1 */}
-            <div className="swag-card bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col items-center">
+            <div className="swag-card modern-card rounded-xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col items-center floating-element">
               <img
                 src={ComingSoonPNG}
                 alt="Tier 1 Swag"
@@ -101,7 +98,7 @@ const Home = () => {
             </div>
 
             {/* Tier 2 */}
-            <div className="swag-card bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col items-center">
+            <div className="swag-card modern-card rounded-xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col items-center floating-element">
               <img
                 src={ComingSoonPNG}
                 alt="Tier 2 Swag"
@@ -116,7 +113,7 @@ const Home = () => {
             </div>
 
             {/* Tier 3 */}
-            <div className="swag-card bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col items-center">
+            <div className="swag-card modern-card rounded-xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col items-center floating-element">
               <img
                 src={ComingSoonPNG}
                 alt="Tier 3 Swag"

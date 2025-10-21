@@ -11,7 +11,7 @@
   max-width: 1200px;
   margin: 2rem auto;
   padding: 0 1rem;
-  font-family: "Inter", "Roboto", sans-serif;
+  font-family: var(--font-primary);
   color: var(--text-color);
 }
 
@@ -27,6 +27,7 @@
 }
 
 .about-title {
+  font-family: var(--font-secondary);
   font-size: 2rem;
   font-weight: 600;
   color: var(--primary-blue);
@@ -41,6 +42,7 @@
 
 /* Core Team Section */
 .core-team-title {
+  font-family: var(--font-secondary);
   font-size: 1.9rem;
   font-weight: 600;
   text-align: center;
@@ -109,6 +111,7 @@
 }
 
 .member-name {
+  font-family: var(--font-secondary);
   font-weight: 600;
   font-size: 1.15rem;
   color: var(--text-color);

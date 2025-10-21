@@ -3,78 +3,91 @@ import React, {useState, useEffect} from "react";
 import "./AboutPage.css";
 import { LinkedIn as LinkedInIcon } from "@mui/icons-material";
 
+import AyonPaulImg from "../assets/AyonPaulImg.jpg"
+import ArnabGhoshImg from "../assets/ArnabGhoshImg.jpg"
+import ShubhamGoraiImg from "../assets/ShubhamGoraiImg.jpg"
+import ShivamKumarMishraImg from "../assets/ShivamKumarMishraImg.jpg"
+import PriyanshuSinghImg from "../assets/PriyanshuSinghImg.jpg"
+import ArchakKhandayitImg from "../assets/ArchakKhandayitImg.jpg"
+import DipikaKumariImg from "../assets/DipikaKumariImg.jpg"
+import PawanSharmaImg from "../assets/PawanSharmaImg.jpg"
+import PriyanshuBakshiImg from "../assets/PriyanshuBakshiImg.jpg"
+import SomyaSinghImg from "../assets/SomyaSinghImg.jpg"
+import MeghnaChatterjeeImg from "../assets/MeghnaChatterjeeImg.jpg"
+import SujayRoyImg from "../assets/SujayRoyImg.jpg"
+
 const coreTeam = [
   {
     name: "Ayon Paul",
     role: "Organizer / Lead",
-    image: "https://randomuser.me/api/portraits/women/1.jpg",
+    image: AyonPaulImg,
     linkedin: "https://www.linkedin.com/in/ayon2407s",
     isLead: true,
   },
   {
     name: "Arnab Ghosh",
     role: "Co-Lead",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
+    image: ArnabGhoshImg,
     linkedin: "https://linkedin.com/in/tulug559",
   },
   {
     name: "Shubham Gorai",
     role: "Android Lead",
-    image: "https://randomuser.me/api/portraits/women/3.jpg",
+    image: ShubhamGoraiImg,
     linkedin: "https://www.linkedin.com/in/shub39",
   },
   {
     name: "Shivam Kumar Mishra",
     role: "Cloud Lead",
-    image: "https://randomuser.me/api/portraits/men/4.jpg",
+    image: ShivamKumarMishraImg,
     linkedin: "https://www.linkedin.com/in/shivam-mishra-shivam2717",
   },
   {
     name: "Priyanshu Singh",
     role: "AIML Lead",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
+    image: PriyanshuSinghImg,
     linkedin: "https://www.linkedin.com/in/priyanshu-singh-45572b304",
   },
   {
     name: "Archak Khandayit",
     role: "Web-Dev Lead",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    image: ArchakKhandayitImg,
     linkedin: "https://www.linkedin.com/in/archak66",
   },
   {
     name: "Dipika Kumari",
     role: "Cybersecurity Lead",
-    image: "https://randomuser.me/api/portraits/women/7.jpg",
+    image: DipikaKumariImg,
     linkedin: "https://www.linkedin.com/in/dipika-164211323",
   },
   {
     name: "Pawan Sharma",
     role: "Content & Design Lead",
-    image: "https://randomuser.me/api/portraits/men/8.jpg",
+    image: PawanSharmaImg,
     linkedin: "https://www.linkedin.com/in/pawan-sharma-243a82249",
   },
   {
     name: "Priyanshu Bakshi",
     role: "Associate Content & Design Lead",
-    image: "https://randomuser.me/api/portraits/women/9.jpg",
+    image: PriyanshuBakshiImg,
     linkedin: "https://www.linkedin.com/in/priyanshu-bakshi-baks",
   },
   {
     name: "Somya Singh",
     role: "Management Lead",
-    image: "https://randomuser.me/api/portraits/men/10.jpg",
+    image: SomyaSinghImg,
     linkedin: "https://www.linkedin.com/in/somya-singh-229a10283",
   },
   {
     name: "Meghna Chatterjee",
     role: "Associate Management Lead",
-    image: "https://randomuser.me/api/portraits/women/11.jpg",
+    image: MeghnaChatterjeeImg,
     linkedin: "https://www.linkedin.com/in/meghna-chatterjee-b80462325",
   },
   {
     name: "Sujay Roy",
     role: "PR & Outreach Lead",
-    image: "https://randomuser.me/api/portraits/men/12.jpg",
+    image: SujayRoyImg,
     linkedin: "https://www.linkedin.com/in/sujayroy2",
   }
 ];

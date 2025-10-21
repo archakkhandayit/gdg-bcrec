@@ -68,9 +68,9 @@ tbody tr:hover {
 }
 
 .name-cell {
-  width: 200px;
-  min-width: 200px;
-  max-width: 200px; /* Ensure fixed width */
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px; /* Ensure fixed width */
 }
 
 .name-cell .avatar {
