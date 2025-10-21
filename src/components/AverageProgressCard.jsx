@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 const AverageProgressCard = ({ TotalParticipants, perLabStats, loading, error }) => {
   const [count, setCount] = useState(0);
-  const [lessThan, setLessThan] = useState(false);
 
   useEffect(() => {
     // Calculate total sum of all lab stats
@@ -10,12 +9,6 @@ const AverageProgressCard = ({ TotalParticipants, perLabStats, loading, error })
       (sum, val) => sum + val,
       0
     );
-    
-    if((totalProgress / TotalParticipants)<0){
-      setLessThan(true);
-    } else{
-      setLessThan(false)
-    }
 
     // Calculate average per participant
     const avgPerParticipant = totalProgress / TotalParticipants;
@@ -63,7 +56,7 @@ const AverageProgressCard = ({ TotalParticipants, perLabStats, loading, error })
   return (
     <div className="flex flex-col justify-center items-center w-full modern-card p-6 text-center floating-element">
       <p className="text-gray-800 text-sm font-medium">Average Progress</p>
-      <h2 className="text-4xl font-semibold gradient-text mt-2">{lessThan===true?"":"<"} {count}</h2>
+      <h2 className="text-4xl font-semibold gradient-text mt-2">{count}</h2>
       <p className="text-gray-500 text-sm mt-1">badges / person</p>
     </div>
   );
