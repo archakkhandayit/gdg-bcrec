@@ -124,35 +124,35 @@
 
 
 @keyframes soft-pulse {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(52, 168, 83, 0.5); }
-        50% { box-shadow: 0 0 5px 5px rgba(52, 168, 83, 0.7); }
-      }
-      .animate-soft-pulse {
-        animation: soft-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-      }
-      @keyframes spin-slow {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      .animate-spin-slow { 
-        animation: spin-slow 8s linear infinite; 
-      }
-      /* Custom styles to match the structure in the user's snippet */
-      .leaderboard-toolbar {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 1rem;
-        flex-wrap: wrap; /* Ensure toolbar items wrap on small screens */
-      }
-      .flex-row { display: flex; flex-direction: row; }
-      .items-center { align-items: center; }
-      .justify-between { justify-content: space-between; }
-      .gap-2 > * { margin-left: 0.5rem; }
-      .gap-4 > * { margin-left: 1rem; }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 168, 83, 0.4); }
+  50% { box-shadow: 0 0 5px 5px rgba(52, 168, 83, 0.7); }
+}
+.animate-soft-pulse {
+  animation: soft-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Toolbar utilities */
+.leaderboard-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.flex-row { display: flex; flex-direction: row; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 > * { margin-left: 0.5rem; }
+.gap-4 > * { margin-left: 1rem; }
+
       
       
