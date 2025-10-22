@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./LeaderboardSection.css"; // Create this CSS file
 import { Search, ArrowDropDown, FileDownload } from "@mui/icons-material"; // Example icons
 import LeaderboardTable from "../components/LeaderboardTable";
+import { RefreshCw } from "lucide-react"; // Changed FileDownload to FileDown
 
 const allBadges = [
   "The Basics of Google Cloud Compute",
@@ -24,14 +25,33 @@ const allBadges = [
   "Analyze Speech and Language with Google APIs",
   "Monitoring in Google Cloud",
   "Prompt Design in Vertex AI",
-  "Level 3: Generative AI"
+  "Level 3: Generative AI",
 ];
 
-const LeaderboardSection = () => {
+const ProgressUpdateBox = () => {
+  // All time state and effects have been removed, resulting in a static component.
 
+  return (
+    // Compact, attractive status pill using a single flex row
+    <div className="bg-green-500/10 p-3 px-4 rounded-full border border-green-300 flex items-center space-x-3 shadow-lg transition duration-300 transform hover:scale-[1.02] flex-shrink-0">
+      {/* Spinning Refresh Icon */}
+      <RefreshCw className="w-4 h-4 text-green-600 animate-spin-slow" />
+
+      {/* Status Text */}
+      <span className="text-sm font-semibold text-green-700 whitespace-nowrap">
+        Progress Updates Hourly
+      </span>
+
+      {/* Glow indicator (subtle animation) */}
+      <div className="w-2 h-2 bg-green-500 rounded-full animate-soft-pulse"></div>
+    </div>
+  );
+};
+
+const LeaderboardSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentTableData, setCurrentTableData] = useState([]);
-  
+
   const handleExportCSV = () => {
     if (!currentTableData || currentTableData.length === 0) {
       alert("No leaderboard data to export.");
@@ -77,16 +97,48 @@ const LeaderboardSection = () => {
   };
   return (
     <div className="leaderboard-card shadow-soft rounded-lg">
-      <div className="leaderboard-header">
-        <h1 className="leaderboard-title">Google Cloud Study Jams 2025</h1>
-        <p className="leaderboard-subtitle">
-          Track your progress in the Google Cloud Study Jams
-        </p>
-        <div className="accent-lines">
-          <span style={{ backgroundColor: "#4285F4" }}></span>
-          <span style={{ backgroundColor: "#EA4335" }}></span>
-          <span style={{ backgroundColor: "#FBBC04" }}></span>
-          <span style={{ backgroundColor: "#34A853" }}></span>
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
+        {/* LEFT PART: Title & Accent Lines (from user's snippet) */}
+        {/* PRIMARY HEADER WRAPPER: Stacks elements (flex-col) on small screens, and puts them side-by-side (lg:flex-row) on large screens. */}
+            {/* PRIMARY HEADER WRAPPER: Stacks elements (flex-col) on small screens, and puts them side-by-side (lg:flex-row) on large screens. */}
+            <div className="flex md:flex-col lg:flex-row lg:items-start lg:justify-between gap-4 relative">
+              
+              {/* FIRST DIV: Title and Subtitle - Centered on all screens and takes up full width */}
+              <div className="leaderboard-header w-full text-center flex flex-col items-center justify-center -mb-3">
+                <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-2 leading-tight leaderboard-title">
+                  Google Cloud Study Jams 2025
+                </h1>
+                <p className="text-xl text-gray-600 font-light leaderboard-subtitle">
+                  Track your progress in the Google Cloud Study Jams
+                </p>
+              </div>
+
+              {/* SECOND DIV: Progress Update Box (Pill) - Positioned absolutely on large screens to float right, 
+                  but remains responsive on small screens.
+              */}
+              <div className="w-full flex justify-center lg:absolute lg:top-0 lg:-right-72 lg:w-auto lg:justify-end mt-4 lg:mt-0">
+                <ProgressUpdateBox />
+              </div>
+            </div>
+
+        {/* Google Accent Lines */}
+        <div className="accent-lines flex space-x-1 h-1">
+          <span
+            className="w-1/4 rounded-full"
+            style={{ backgroundColor: "#4285F4" }}
+          ></span>
+          <span
+            className="w-1/4 rounded-full"
+            style={{ backgroundColor: "#EA4335" }}
+          ></span>
+          <span
+            className="w-1/4 rounded-full"
+            style={{ backgroundColor: "#FBBC04" }}
+          ></span>
+          <span
+            className="w-1/4 rounded-full"
+            style={{ backgroundColor: "#34A853" }}
+          ></span>
         </div>
       </div>
 
@@ -114,7 +166,10 @@ const LeaderboardSection = () => {
         </div>
       </div>
 
-      <LeaderboardTable searchQuery={searchQuery} onDataChange={(data) => setCurrentTableData(data)} />
+      <LeaderboardTable
+        searchQuery={searchQuery}
+        onDataChange={(data) => setCurrentTableData(data)}
+      />
     </div>
   );
 };

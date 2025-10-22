@@ -269,8 +269,8 @@ body {
 }
 
 .member-avatar {
-  width: 120px; /* Slightly larger avatars */
-  height: 120px;
+  width: 130px; /* Slightly larger avatars */
+  height: 130px;
   border-radius: 50%;
   object-fit: cover;
   border: 5px solid var(--border-color-light); /* Thicker border */
