@@ -90,116 +90,117 @@ const LeaderboardTable = ({ searchQuery, onDataChange }) => {
   };
 
   if (loading) {
+    return (
+      <div className="loader-container">
+        <div className="spinner"></div>
+        <p>Loading leaderboard...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="error-container">
+        <ErrorOutline sx={{ fontSize: "2rem", color: "#EA4335" }} />
+        <p>{"Unable to load the Leaderboard"}</p>
+        <button
+          className="refresh-button"
+          onClick={() => {
+            setLoading(true);
+            setError(null);
+            window.location.reload();
+          }}
+        >
+          <Refresh sx={{ marginRight: "0.5rem" }} /> Retry
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div className="loader-container">
-      <div className="spinner"></div>
-      <p>Loading leaderboard...</p>
-    </div>
-  );
-}
+    <div className="leaderboard-wrapper">
+      <table className="leaderboard-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th style={{ textAlign: "center" }}>Name</th>
+            <th>Badge Progress</th>
+            {allBadges.map((badgeTitle, index) => (
+              <th key={index} title={badgeTitle} className="badge-title">
+                {badgeTitle}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {filteredUsers.length > 0 ? (
+            filteredUsers.map((user, index) => {
+              const badgesCompletionStatus = allBadges.map((badgeTitle) => {
+                const found = user.badges.find((b) => b.title === badgeTitle);
+                return found?.completed || false;
+              });
+              const completedCount =
+                badgesCompletionStatus.filter(Boolean).length;
 
-if (error) {
-  return (
-    <div className="error-container">
-      <ErrorOutline sx={{ fontSize: "2rem", color: "#EA4335" }} />
-      <p>{"Unable to load the Leaderboard"}</p>
-      <button
-        className="refresh-button"
-        onClick={() => {
-          setLoading(true);
-          setError(null);
-          window.location.reload(); 
-        }}
-      >
-        <Refresh sx={{ marginRight: "0.5rem" }} /> Retry
-      </button>
-    </div>
-  );
-}
-
-return (
-  <div className="leaderboard-wrapper">
-    <table className="leaderboard-table">
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Name</th>
-          <th>Badge Progress</th>
-          {allBadges.map((badgeTitle, index) => (
-            <th key={index} title={badgeTitle} className="badge-title">
-              {badgeTitle}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {filteredUsers.length > 0 ? (
-          filteredUsers.map((user, index) => {
-            const badgesCompletionStatus = allBadges.map((badgeTitle) => {
-              const found = user.badges.find((b) => b.title === badgeTitle);
-              return found?.completed || false;
-            });
-            const completedCount =
-              badgesCompletionStatus.filter(Boolean).length;
-
-            return (
-              <tr
-                key={`${user.name}-${index}`}
-                className={index % 2 === 0 ? "even-row" : "odd-row"}
-              >
-                <td className="rank-cell">{getMedalIcon(user.rank)}</td>
-                <td
-                  className="name-cell cursor-pointer hover:underline"
-                  onClick={() => window.open(user.profile_url, "_blank")}
-                  title={user.name}
+              return (
+                <tr
+                  key={`${user.name}-${index}`}
+                  className={index % 2 === 0 ? "even-row" : "odd-row"}
                 >
-                  {user.name}
-                </td>
-                <td className="badge-progress-cell">
-                  <div className="flex-col gap-1">
-                    <span>
-                      {completedCount} / {allBadges.length}
-                    </span>
-                    <div className="progress-bar-wrapper">
-                      <div
-                        className="progress-bar"
-                        style={{
-                          width: `${(completedCount / allBadges.length) * 100}%`,
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                </td>
-                {badgesCompletionStatus.map((isCompleted, badgeIndex) => (
-                  <td key={badgeIndex} className="module-cell">
-                    {isCompleted ? (
-                      <CheckCircle
-                        sx={{
-                          color: "var(--success-green)",
-                          fontSize: "1.2rem",
-                        }}
-                      />
-                    ) : (
-                      <RadioButtonUnchecked
-                        sx={{
-                          color: "var(--border-color)",
-                          fontSize: "1.2rem",
-                        }}
-                      />
-                    )}
+                  <td className="rank-cell">{getMedalIcon(user.rank)}</td>
+                  <td
+                    className="name-cell cursor-pointer hover:underline"
+                    onClick={() => window.open(user.profile_url, "_blank")}
+                    title={user.name}
+                  >
+                    {user.name}
                   </td>
-                ))}
-              </tr>
-            );
-          })
-        ) : (
-          <></>
-        )}
-      </tbody>
-    </table>
-  </div>
-);
-
+                  <td className="badge-progress-cell">
+                    <div className="flex-col gap-1">
+                      <span>
+                        {completedCount} / {allBadges.length}
+                      </span>
+                      <div className="progress-bar-wrapper">
+                        <div
+                          className="progress-bar"
+                          style={{
+                            width: `${
+                              (completedCount / allBadges.length) * 100
+                            }%`,
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  </td>
+                  {badgesCompletionStatus.map((isCompleted, badgeIndex) => (
+                    <td key={badgeIndex} className="module-cell">
+                      {isCompleted ? (
+                        <CheckCircle
+                          sx={{
+                            color: "var(--success-green)",
+                            fontSize: "1.2rem",
+                          }}
+                        />
+                      ) : (
+                        <RadioButtonUnchecked
+                          sx={{
+                            color: "var(--border-color)",
+                            fontSize: "1.2rem",
+                          }}
+                        />
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })
+          ) : (
+            <></>
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default LeaderboardTable;
