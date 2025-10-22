@@ -9,7 +9,7 @@ import { useStatsData } from "../hooks/useStatsData.js";
 
 const Home = () => {
   const { totalFullCompletions, perLabStats, loading, error } = useStatsData();
-  const TotalParticipants = 190;
+  const TotalParticipants = 187;
   return (
     <div className="leaderboard-card modern-card shadow-soft rounded-lg">
       <div className="leaderboard-header">
