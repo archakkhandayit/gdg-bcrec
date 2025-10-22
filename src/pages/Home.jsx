@@ -131,7 +131,7 @@ const Home = () => {
       </div>
 
       {/* New chart section */}
-      <div className="mt-8 px-4">
+      <div className="mt-8 px-4 hidden sm:block">
         <LabCompletionChart
           perLabStats={perLabStats}
           loading={loading}
