@@ -186,15 +186,6 @@ const AboutPage = () => {
               us as we learn, build, and innovate together.
             </p>
           </div>
-
-          <a
-            href="https://chat.whatsapp.com/Ko8s5dxDafc563XaPSeLwO?mode=wwt"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cta-button"
-          >
-            Join Our Whatsapp Group <LaunchIcon fontSize="small" />
-          </a>
         </div>
         <div className="hero-image-container">
           <img
