@@ -2,9 +2,10 @@ import React from "react";
 import TotalParticipantsCard from "../components/TotalParticipantsCard";
 import CompletionCard from "../components/CompletionCard";
 import AverageProgressCard from "../components/AverageProgressCard";
-import ComingSoonPNG from "../assets/Coming-Soon.png";
 import LabCompletionChart from "../components/LabCompletionChart";
 
+import ComingSoonPNG from "../assets/Coming-Soon.png";
+import Swags_Tier1 from "../assets/Swags_Tier1.jpg";
 import { useStatsData } from "../hooks/useStatsData.js";
 
 const Home = () => {
@@ -85,9 +86,9 @@ const Home = () => {
             {/* Tier 1 */}
             <div className="swag-card modern-card rounded-xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col items-center floating-element">
               <img
-                src={ComingSoonPNG}
+                src={Swags_Tier1}
                 alt="Tier 1 Swag"
-                className="w-40 h-40 object-contain mb-4 rounded-2xl"
+                className="w-60 object-contain mb-2 rounded-2xl"
               />
               <h3 className="text-lg font-semibold text-gray-800 mb-2">
                 Tier 1
@@ -102,7 +103,7 @@ const Home = () => {
               <img
                 src={ComingSoonPNG}
                 alt="Tier 2 Swag"
-                className="w-40 h-40 object-contain mb-4 rounded-2xl"
+                className="w-60 h-40 object-contain mb-2 rounded-2xl"
               />
               <h3 className="text-lg font-semibold text-gray-800 mb-2">
                 Tier 2
@@ -117,7 +118,7 @@ const Home = () => {
               <img
                 src={ComingSoonPNG}
                 alt="Tier 3 Swag"
-                className="w-40 h-40 object-contain mb-4 rounded-2xl"
+                className="w-60 h-40 object-contain mb-2 rounded-2xl"
               />
               <h3 className="text-lg font-semibold text-gray-800 mb-2">
                 Tier 3
