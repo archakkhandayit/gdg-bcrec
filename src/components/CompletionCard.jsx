@@ -5,6 +5,7 @@ const CompletionCard = ({ percentage, loading, error }) => {
   const [tier, setTier] = useState({ name: "Tier 3", emoji: "🥉" });
   const circleLength = 226;
   const [tierMax, setTierMax] = useState(0);
+  const [currentProgress, setCurrentProgress] = useState(0);
 
   useEffect(() => {
     if (loading || error) return;
@@ -13,23 +14,27 @@ const CompletionCard = ({ percentage, loading, error }) => {
 
     if (percentage >= 100) {
       tierInfo = { name: "Tier 1", emoji: "🥇", relativeProgress: 100 };
-      setTierMax(100);
+      setTierMax(30);
+      setCurrentProgress(percentage-70);
     } else if (percentage >= 70) {
-      setTierMax(100);
+      setTierMax(30);
+      setCurrentProgress(percentage-70);
       tierInfo = {
         name: "Tier 1",
-        emoji: "🥈",
+        emoji: "🥇",
         relativeProgress: ((percentage - 70) / 30) * 100,
       };
     } else if (percentage >= 50) {
-      setTierMax(70);
+      setTierMax(20);
+      setCurrentProgress(percentage-50);
       tierInfo = {
         name: "Tier 2",
-        emoji: "🥉",
+        emoji: "🥈",
         relativeProgress: ((percentage - 50) / 20) * 100,
       };
     } else {
       setTierMax(50);
+      setCurrentProgress(percentage);
       tierInfo = {
         name: "Tier 3",
         emoji: "🥉",
@@ -119,7 +124,7 @@ const CompletionCard = ({ percentage, loading, error }) => {
         <span>{tier.emoji}</span>
         <span>{tier.name}</span>
         <span className="ml-1 bg-gray-100 rounded-md px-2 py-[1px] text-xs font-medium">
-          {percentage}/{tierMax}
+          {currentProgress}/{tierMax}
         </span>
       </div>
     </div>
