@@ -6,6 +6,7 @@ import LabCompletionChart from "../components/LabCompletionChart";
 
 import ComingSoonPNG from "../assets/Coming-Soon.png";
 import Swags_Tier1 from "../assets/Swags_Tier1.jpg";
+import Swags_Tier3 from "../assets/Swags_Tier3.jpg";
 import { useStatsData } from "../hooks/useStatsData.js";
 
 const Home = () => {
@@ -116,9 +117,9 @@ const Home = () => {
             {/* Tier 3 */}
             <div className="swag-card modern-card rounded-xl shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col items-center floating-element">
               <img
-                src={ComingSoonPNG}
+                src={Swags_Tier3}
                 alt="Tier 3 Swag"
-                className="w-60 h-40 object-contain mb-2 rounded-2xl"
+                className="w-60 object-contain mb-2 rounded-3xl"
               />
               <h3 className="text-lg font-semibold text-gray-800 mb-2">
                 Tier 3
