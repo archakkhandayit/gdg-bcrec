@@ -17,14 +17,14 @@ const CompletionCard = ({ percentage, loading, error }) => {
     } else if (percentage >= 70) {
       setTierMax(70);
       tierInfo = {
-        name: "Tier 2",
+        name: "Tier 1",
         emoji: "🥈",
         relativeProgress: ((percentage - 70) / 30) * 100,
       };
     } else if (percentage >= 50) {
       setTierMax(50);
       tierInfo = {
-        name: "Tier 3",
+        name: "Tier 2",
         emoji: "🥉",
         relativeProgress: ((percentage - 50) / 20) * 100,
       };
