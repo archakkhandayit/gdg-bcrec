@@ -96,7 +96,7 @@ const Home = () => {
                 Tier 1
               </h3>
               <p className="text-gray-600 text-center text-sm">
-                Top 100 Participants
+                Top 100 Participants <br /> (Upon completion of 100 Participants)
               </p>
             </div>
 
@@ -111,7 +111,7 @@ const Home = () => {
                 Tier 2
               </h3>
               <p className="text-gray-600 text-center text-sm">
-                Top 70 Participants
+                Top 70 Participants <br /> (Upon completion of 70 Participants)
               </p>
             </div>
 
@@ -126,7 +126,7 @@ const Home = () => {
                 Tier 3
               </h3>
               <p className="text-gray-600 text-center text-sm">
-                Top 50 Participants
+                Top 50 Participants <br /> (Upon completion of 50 Participants)
               </p>
             </div>
           </div>
